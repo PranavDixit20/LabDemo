@@ -1,4 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
-
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+    <item android:title="About Us"
+        android:id="@+id/aboutus"
+        app:showAsAction="never"/>
+    <item android:title="Help"
+        android:id="@+id/help"
+        app:showAsAction="never"/>
+    <item android:title="LogOut"
+        android:id="@+id/exit"
+        app:showAsAction="never"/>
 </menu>
