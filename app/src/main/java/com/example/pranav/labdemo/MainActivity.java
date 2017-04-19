@@ -6,7 +6,10 @@ import android.os.AsyncTask;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -49,6 +52,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         pb.setVisibility(View.GONE);
         b.setOnClickListener(this);
+
     }
 
     @Override
@@ -98,7 +102,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 HttpConnectionParams.setSoTimeout(httpRequestParams, 3000);
 
                 HttpClient hp = new DefaultHttpClient();
-                HttpPost httpPost = new HttpPost("http://192.168.0.102:8084/Lab_Project/DbConnection");
+                HttpPost httpPost = new HttpPost("http://192.168.0.4:8084/Lab_Project/DbConnection");
                 Log.d("connection", "success");
                 List<NameValuePair> list = new ArrayList<NameValuePair>();
                 list.add(new BasicNameValuePair("name", valuse[0]));
@@ -134,6 +138,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             return return_text;
         }
     }
+
+
 }
 
 
