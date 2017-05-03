@@ -21,10 +21,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".User"
-            android:parentActivityName=".MainActivity"
-            tools:targetApi="jelly_bean" />
-        <activity android:name=".AboutUs"/>
-        <activity android:name=".Help"/>
+            android:parentActivityName=".MainActivity" />
+        <activity android:name=".AboutUs"
+            android:parentActivityName=".User"/>
+        <activity android:name=".Help"
+            android:parentActivityName=".User"/>
     </application>
 
 </manifest>
