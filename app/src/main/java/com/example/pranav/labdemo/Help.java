@@ -16,7 +16,6 @@ public class Help extends AppCompatActivity {
 
         tb=(Toolbar)findViewById(R.id.tbar);
         setSupportActionBar(tb);
-        getSupportActionBar().setTitle(R.string.title);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
@@ -39,8 +38,8 @@ public class Help extends AppCompatActivity {
                 startActivity(new Intent(this,Help.class));
                 break;
             case R.id.exit:
-                android.os.Process.killProcess(android.os.Process.myPid());
-                System.exit(1);
+                finish();
+                System.exit(0);
                 break;
 
         }
