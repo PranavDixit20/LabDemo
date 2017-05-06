@@ -10,6 +10,7 @@ import android.widget.Adapter;
 import android.widget.TextView;
 
 import com.example.pranav.labdemo.Contact;
+import com.example.pranav.labdemo.Info;
 import com.example.pranav.labdemo.R;
 
 import java.util.ArrayList;
@@ -23,10 +24,14 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
 
     private List<Contact> list = new ArrayList<>();
 
+
     public RecyclerAdapter(List<Contact> list)
     {
         this.list = list;
+
     }
+
+
     @Override
     public MyViewholder onCreateViewHolder(ViewGroup parent, int viewType) {
 
