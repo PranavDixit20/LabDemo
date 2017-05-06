@@ -61,8 +61,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public static final String KEY_PASSWORD="pass";
     private String Username;
     private String Password;
+    Intent in;
+    Bundle bu;
+    String d;
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,15 +79,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         pb.setVisibility(View.GONE);
         b.setOnClickListener(this);
 
-
-
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+
     @Override
     public void onClick(View view) {
         pb.setVisibility(View.VISIBLE);
-
+         d = et.getText().toString();
        // String s1 = et.getText().toString();
        // String s2 = et1.getText().toString();
        // new ExecuteTask().execute(s1, s2);
@@ -104,7 +105,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void onResponse(String response) {
                 Log.d("res",response);
                 if (response.contains("success")) {
-                    startActivity(new Intent(MainActivity.this,User.class));
+
+                    in = new Intent(MainActivity.this,User.class);
+                    bu = new Bundle();
+                    bu.putString("name",d);
+                    in.putExtras(bu);
+                    startActivity(in);
+
                 } else {
                     AlertDialog.Builder ab = new AlertDialog.Builder(MainActivity.this);
                     AlertDialog ad = ab.create();
