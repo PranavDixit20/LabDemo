@@ -6,9 +6,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
-public class AboutUs extends AppCompatActivity {
+public class AboutUs extends AppCompatActivity implements View.OnClickListener {
     Toolbar tb;
+    String nm;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -17,6 +19,10 @@ public class AboutUs extends AppCompatActivity {
         tb=(Toolbar)findViewById(R.id.tbar);
         setSupportActionBar(tb);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        tb.setNavigationOnClickListener(this);
+
+        Bundle b = this.getIntent().getExtras();
+        nm = b.getString("name");
 
     }
 
@@ -33,10 +39,14 @@ public class AboutUs extends AppCompatActivity {
         switch (menuItem.getItemId())
         {
             case R.id.aboutus:
-                startActivity(new Intent(this,AboutUs.class));
+                Intent in=new Intent(this,AboutUs.class);
+                in.putExtra("name",nm);
+                startActivities(new Intent[]{in});
                 break;
             case R.id.help:
-                startActivity(new Intent(this,Help.class));
+                Intent i=new Intent(this,Help.class);
+                i.putExtra("name",nm);
+                startActivities(new Intent[]{i});
                 break;
             case R.id.exit:
                 finish();
@@ -49,4 +59,10 @@ public class AboutUs extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onClick(View v) {
+        Intent in=new Intent(this,User.class);
+        in.putExtra("name",nm);
+        startActivities(new Intent[]{in});
+    }
 }
