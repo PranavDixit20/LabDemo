@@ -54,6 +54,9 @@ public class User extends AppCompatActivity{
         Bundle b = this.getIntent().getExtras();
         nm = b.getString("name");
 
+        Log.d("login name to end",nm);
+
+
         /* TabHost Setup*/
         TabHost host = (TabHost)findViewById(R.id.tabhost);
         host.setup();
@@ -61,7 +64,6 @@ public class User extends AppCompatActivity{
         /* Toolbar Setup*/
         tb=(Toolbar)findViewById(R.id.tbar);
         setSupportActionBar(tb);
-
 
         /* Recycler View Setup 1*/
         rv = (RecyclerView)findViewById(R.id.recycler_view);
@@ -113,10 +115,14 @@ public class User extends AppCompatActivity{
         switch (menuItem.getItemId())
         {
             case R.id.aboutus:
-                startActivity(new Intent(this,AboutUs.class));
+                Intent in=new Intent(this,AboutUs.class);
+                in.putExtra("name",nm);
+                startActivities(new Intent[]{in});
                 break;
             case R.id.help:
-                startActivity(new Intent(this,Help.class));
+                Intent i=new Intent(this,Help.class);
+                i.putExtra("name",nm);
+                startActivities(new Intent[]{i});
                 break;
             case R.id.exit:
                 finish();
@@ -177,8 +183,9 @@ public class User extends AppCompatActivity{
                 Gson gson = builder.create();
 
                 List<Contact> list = Arrays.asList(gson.fromJson(ad,Contact[].class));
-                adapter = new RecyclerAdapter(list);
+                adapter = new RecyclerAdapter(nm,list,User.this);
                 rv.setAdapter(adapter);
+
 
             }
         }, new Response.ErrorListener() {

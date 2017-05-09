@@ -20,12 +20,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".User"
+        <activity
+            android:name=".User"
             android:parentActivityName=".MainActivity" />
-        <activity android:name=".AboutUs"
-            android:parentActivityName=".User"/>
-        <activity android:name=".Help"
-            android:parentActivityName=".User"/>
+        <activity
+            android:name=".AboutUs"
+             />
+
+        <activity
+            android:name=".Help"
+             />
+
+        <activity
+            android:name=".Desp"
+            />
     </application>
 
 </manifest>
