@@ -3,21 +3,16 @@ package com.example.pranav.labdemo.Adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.TextView;
 
-import com.example.pranav.labdemo.Contact;
+import com.example.pranav.labdemo.JsonKeys.Contact;
 import com.example.pranav.labdemo.Desp;
-import com.example.pranav.labdemo.Info;
-import com.example.pranav.labdemo.MainActivity;
 import com.example.pranav.labdemo.R;
-import com.example.pranav.labdemo.User;
 
 import java.util.ArrayList;
 import java.util.List;

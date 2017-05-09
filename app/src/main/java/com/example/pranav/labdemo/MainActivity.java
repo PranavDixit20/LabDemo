@@ -53,8 +53,7 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     EditText et, et1;
-    ProgressBar pb;
-    Button b;
+    Button b,b1;
 
     public static final String LOGIN_URL = "http://192.168.0.4:8084/Lab_Project/DbConnection";
     public static final String KEY_USERNAME="name";
@@ -73,23 +72,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         et = (EditText) findViewById(R.id.email);
         et1 = (EditText) findViewById(R.id.pass);
-        pb = (ProgressBar) findViewById(R.id.pb);
         b = (Button) findViewById(R.id.login);
-
-        pb.setVisibility(View.GONE);
+        b1 = (Button)findViewById(R.id.reg);
         b.setOnClickListener(this);
-
+        b1.setOnClickListener(this);
     }
 
 
     @Override
-    public void onClick(View view) {
-        pb.setVisibility(View.VISIBLE);
-         d = et.getText().toString();
-       // String s1 = et.getText().toString();
-       // String s2 = et1.getText().toString();
-       // new ExecuteTask().execute(s1, s2);
-        userLogin();
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.login :
+                d = et.getText().toString();
+                // String s1 = et.getText().toString();
+                // String s2 = et1.getText().toString();
+                // new ExecuteTask().execute(s1, s2);
+                userLogin();
+                break;
+            case R.id.reg :
+                startActivity(new Intent(MainActivity.this,Register.class));
+                break;
+
+        }
+
+
 
     }
 
@@ -99,7 +105,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         Username = et.getText().toString().trim();
         Password = et1.getText().toString().trim();
-        pb.setVisibility(View.GONE);
+
         StringRequest sr = new StringRequest(Request.Method.POST,LOGIN_URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -158,7 +164,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         @Override
         protected void onPostExecute(String result) {
-            pb.setVisibility(View.GONE);
+
             //progess_msz.setVisibility(View.GONE);
             Toast.makeText(MainActivity.this,result, Toast.LENGTH_LONG).show();
 

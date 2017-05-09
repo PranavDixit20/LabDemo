@@ -1,15 +1,12 @@
 package com.example.pranav.labdemo.Adapter;
 
-import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.pranav.labdemo.Contact;
-import com.example.pranav.labdemo.Info;
+import com.example.pranav.labdemo.JsonKeys.Info;
 import com.example.pranav.labdemo.R;
 
 import java.util.ArrayList;

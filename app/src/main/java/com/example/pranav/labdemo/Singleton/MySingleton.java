@@ -1,4 +1,4 @@
-package com.example.pranav.labdemo;
+package com.example.pranav.labdemo.Singleton;
 
 import android.content.Context;
 
