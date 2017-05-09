@@ -23,17 +23,10 @@
         <activity
             android:name=".User"
             android:parentActivityName=".MainActivity" />
-        <activity
-            android:name=".AboutUs"
-             />
-
-        <activity
-            android:name=".Help"
-             />
-
-        <activity
-            android:name=".Desp"
-            />
+        <activity android:name=".AboutUs" />
+        <activity android:name=".Help" />
+        <activity android:name=".Desp" />
+        <activity android:name=".Register"/>
     </application>
 
 </manifest>

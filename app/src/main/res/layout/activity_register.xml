@@ -14,7 +14,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:text="Email Id "
+        android:text="User Name "
         android:textStyle="bold"
         android:gravity="center"
         android:textSize="20sp"
@@ -23,19 +23,42 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:hint="Enter Your Email Id"
+        android:hint="Enter Your User Name"
         android:gravity="center"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="5dp"
-        android:id="@+id/email"
-        android:inputType="textEmailAddress"
+        android:id="@+id/uname"
         android:background="@drawable/shape" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:text="Mobile Number"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:textColor="#000"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:hint="Mobile Number"
+        android:gravity="center"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
+        android:id="@+id/mnum"
+        android:inputType="phone"
+        android:background="@drawable/shape" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:text="Password "
@@ -47,25 +70,14 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:hint="Enter Your Password"
+        android:hint="Password"
         android:gravity="center"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="5dp"
-        android:id="@+id/pass"
+        android:id="@+id/rpass"
         android:inputType="textPassword"
-        android:background="@drawable/shape"/>
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="20dp"
-        android:text="Login"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:id="@+id/login"/>
+        android:background="@drawable/shape" />
 
     <Button
         android:layout_width="match_parent"
@@ -76,6 +88,6 @@
         android:text="Register"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:id="@+id/reg"/>
+        android:id="@+id/regs"/>
 
 </LinearLayout>

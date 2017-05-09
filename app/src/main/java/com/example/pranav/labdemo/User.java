@@ -1,20 +1,15 @@
 package com.example.pranav.labdemo;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.support.v7.widget.ToolbarWidgetWrapper;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.TabHost;
-import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -25,6 +20,9 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.pranav.labdemo.Adapter.RecyclerAdapter;
 import com.example.pranav.labdemo.Adapter.RecyclerInfoAdapter;
+import com.example.pranav.labdemo.JsonKeys.Contact;
+import com.example.pranav.labdemo.JsonKeys.Info;
+import com.example.pranav.labdemo.Singleton.MySingleton;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 

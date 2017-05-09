@@ -1,4 +1,4 @@
-package com.example.pranav.labdemo;
+package com.example.pranav.labdemo.JsonKeys;
 
 /**
  * Created by prana on 09-05-2017.
