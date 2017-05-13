@@ -32,7 +32,7 @@ public class Desp extends AppCompatActivity implements View.OnClickListener {
     Toolbar tb;
     TextView tv;
     String nam,un;
-    public String url = "http://192.168.0.4:8084/Lab_Project/JsonServlet";
+    public String url = "http://192.168.0.5:8084/Lab_Project/JsonServlet";
     public static final String KEY_DESP="descript";
     List<Decsript> li = new ArrayList<>();
     int p;

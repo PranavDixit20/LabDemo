@@ -36,8 +36,8 @@ public class User extends AppCompatActivity{
     Toolbar tb;
     RecyclerView rv,rv1;
     RecyclerView.LayoutManager lm,lm1;
-    public String url = "http://192.168.0.4:8084/Lab_Project/JsonServlet";
-    public String infoUrl = "http://192.168.0.4:8084/Lab_Project/InfoServlet";
+    public String url = "http://192.168.0.5:8084/Lab_Project/JsonServlet";
+    public String infoUrl = "http://192.168.0.5:8084/Lab_Project/InfoServlet";
     RecyclerAdapter adapter;
     RecyclerInfoAdapter adapter1;
     public static final String KEY_USERNAME="sname";
@@ -91,9 +91,9 @@ public class User extends AppCompatActivity{
         host.addTab(spec);
 
         //Tab 3
-        spec = host.newTabSpec("Cart");
-        spec.setContent(R.id.Cart);
-        spec.setIndicator("Cart");
+        spec = host.newTabSpec("Profile");
+        spec.setContent(R.id.Profile);
+        spec.setIndicator("Profile");
         host.addTab(spec);
 
     }
