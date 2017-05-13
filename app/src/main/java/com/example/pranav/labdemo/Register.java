@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -28,6 +29,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
     EditText e,e1,e2;
     Button b;
     String s,s1,s2;
+    String a,a1,a2;
     public static final String LOGIN_URL = "http://192.168.0.4:8084/Lab_Project/RegisterServlet";
     public static final String KEY_USERNAME="rname";
     public static final String KEY_NUMBER="rmob";
@@ -46,14 +48,44 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
 
     @Override
     public void onClick(View v) {
-        userRegister();
-    }
-
-    private void userRegister() {
 
         s = e.getText().toString().trim();
         s1 = e1.getText().toString().trim();
         s2 = e2.getText().toString().trim();
+
+        boolean p = validate(s,s1,s2);
+        if (p){
+            userRegister(s,s1,s2);
+        }
+
+    }
+
+    private boolean validate(String s,String s1,String s2) {
+
+        if (TextUtils.isEmpty(s)){
+            e.setError("enter Your name");
+            return false;
+        }
+        if (TextUtils.isEmpty(s1)){
+            e1.setError("enter your mob");
+            return false;
+        }
+        if (TextUtils.isEmpty(s2)){
+            e2.setError("enter your pass");
+            return false;
+        }
+        return true;
+    }
+
+    private void userRegister( String p, String p1, String p2) {
+
+        a = p;
+        a1 = p1;
+        a2 = p2;
+
+        Log.d("user name",a);
+        Log.d("user mob ",a1);
+        Log.d("user pass",a2);
 
         StringRequest sr = new StringRequest(Request.Method.POST,LOGIN_URL, new Response.Listener<String>() {
             @Override
@@ -92,11 +124,11 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
 
         }){
             @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
+            protected Map<String, String > getParams() throws AuthFailureError {
                 Map<String,String> map = new HashMap<String,String>();
-                map.put(KEY_USERNAME,s);
-                map.put(KEY_NUMBER,s1);
-                map.put(KEY_PASSWORD,s2);
+                map.put(KEY_USERNAME,a);
+                map.put(KEY_NUMBER,a1);
+                map.put(KEY_PASSWORD,a2);
                 return map;
             }
         };
