@@ -224,6 +224,18 @@
                             android:clickable="true"
                             android:id="@+id/u_pass"/>
 
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginRight="20dp"
+                            android:layout_marginLeft="20dp"
+                            android:text="account delete ?"
+                            android:layout_gravity="center"
+                            android:background="@drawable/shapee"
+                            android:clickable="true"
+                            android:id="@+id/delete"/>
+
                     </LinearLayout>
 
                 </LinearLayout>

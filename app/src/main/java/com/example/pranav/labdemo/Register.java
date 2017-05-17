@@ -20,13 +20,27 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.digits.sdk.android.AuthCallback;
+import com.digits.sdk.android.Digits;
+import com.digits.sdk.android.DigitsAuthButton;
+import com.digits.sdk.android.DigitsException;
+import com.digits.sdk.android.DigitsSession;
+import com.twitter.sdk.android.core.TwitterAuthConfig;
+import com.twitter.sdk.android.core.TwitterCore;
 
 import java.util.HashMap;
 import java.util.Map;
 
+import io.fabric.sdk.android.Fabric;
+
 public class Register extends AppCompatActivity implements View.OnClickListener {
 
+    // Note: Your consumer key and secret should be obfuscated in your source code before shipping.
+    private static final String TWITTER_KEY = "x7OeA1QL5TgCDVl3q4ae6Y1x5";
+    private static final String TWITTER_SECRET = "Jj3A0YlJ6zCaYZo0M9Txmh1fpKDsuO6SitHfybxbYl6hUgA8RQ";
+
     EditText e,e1,e2;
+    TextView tv;
     Button b;
     String s,s1,s2;
     String a,a1,a2;
@@ -34,26 +48,52 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
     public static final String KEY_USERNAME="rname";
     public static final String KEY_NUMBER="rmob";
     public static final String KEY_PASSWORD="rpass";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        TwitterAuthConfig authConfig = new TwitterAuthConfig(TWITTER_KEY, TWITTER_SECRET);
+        Fabric.with(this, new TwitterCore(authConfig), new Digits.Builder().build());
         setContentView(R.layout.activity_register);
 
         e = (EditText)findViewById(R.id.uname);
-        e1 = (EditText)findViewById(R.id.mnum);
         e2 = (EditText)findViewById(R.id.rpass);
+        e2.setVisibility(View.GONE);
+        tv = (TextView)findViewById(R.id.p);
+        tv.setVisibility(View.GONE);
         b = (Button) findViewById(R.id.regs);
+        b.setVisibility(View.GONE);
         b.setOnClickListener(this);
+
+        DigitsAuthButton digitsButton = (DigitsAuthButton) findViewById(R.id.auth_button);
+        digitsButton.setCallback(new AuthCallback() {
+            @Override
+            public void success(DigitsSession session, String phoneNumber) {
+                // TODO: associate the session userID with your user model
+                Toast.makeText(getApplicationContext(), "Authentication successful for "
+                        + phoneNumber, Toast.LENGTH_LONG).show();
+                    s1 = phoneNumber;
+                    tv.setVisibility(View.VISIBLE);
+                    e2.setVisibility(View.VISIBLE);
+                    b.setVisibility(View.VISIBLE);
+                Log.d("Digits", phoneNumber);
+            }
+
+            @Override
+            public void failure(DigitsException exception) {
+                Log.d("Digits", "Sign in with Digits failure", exception);
+            }
+        });
+
     }
 
     @Override
     public void onClick(View v) {
 
         s = e.getText().toString().trim();
-        s1 = e1.getText().toString().trim();
         s2 = e2.getText().toString().trim();
 
-        boolean p = validate(s,s1,s2);
+        boolean p = validate(s,s2);
         if (p){
             userRegister(s,s1,s2);
         }
@@ -64,14 +104,10 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
 
     }
 
-    private boolean validate(String p,String p1,String p2) {
+    private boolean validate(String p,String p2) {
 
         if (p.length() == 0){
             e.setError("enter Your name");
-            return false;
-        }
-        if (p1.length() == 0){
-            e1.setError("enter your mob");
             return false;
         }
         if (p2.length() == 0){

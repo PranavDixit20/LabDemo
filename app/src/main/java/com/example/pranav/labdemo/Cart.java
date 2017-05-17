@@ -83,6 +83,7 @@ public class Cart extends AppCompatActivity implements View.OnClickListener, Ada
     @Override
     public boolean onCreateOptionsMenu (Menu menu){
         getMenuInflater().inflate(R.menu.menu_main,menu);
+        menu.findItem(R.id.action_drawer_cart).setVisible(false);
         return super.onCreateOptionsMenu(menu);
 
     }
