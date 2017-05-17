@@ -14,7 +14,7 @@
     <item
         android:id="@+id/action_drawer_cart"
         android:orderInCategory="200"
-        android:title="Cart"
+        android:title="scart"
         android:icon="@mipmap/shopping_cart"
         app:showAsAction="ifRoom"/>
 </menu>

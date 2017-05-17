@@ -42,11 +42,20 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="Add to cart"
-            android:textColor="#FFF"
             android:textSize="15sp"
+            android:textColor="#FFF"
             android:background="#9ACD32"
-            android:layout_below="@+id/buy"
-            />
+            android:id="@+id/cart"
+            android:layout_below="@+id/buy"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/cart"
+                android:layout_marginTop="10dp"
+                android:text="* note:- Sorry Book is not avaliable"
+                android:textColor="#FF00"
+                android:id="@+id/note"/>
 
     </RelativeLayout>
 

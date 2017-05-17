@@ -9,7 +9,10 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TabHost;
+import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -21,27 +24,35 @@ import com.android.volley.toolbox.Volley;
 import com.example.pranav.labdemo.Adapter.RecyclerAdapter;
 import com.example.pranav.labdemo.Adapter.RecyclerInfoAdapter;
 import com.example.pranav.labdemo.JsonKeys.Contact;
+import com.example.pranav.labdemo.JsonKeys.Decsript;
 import com.example.pranav.labdemo.JsonKeys.Info;
+import com.example.pranav.labdemo.JsonKeys.ProfileKey;
 import com.example.pranav.labdemo.Singleton.MySingleton;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class User extends AppCompatActivity{
+public class User extends AppCompatActivity implements View.OnClickListener {
 
     Toolbar tb;
     RecyclerView rv,rv1;
     RecyclerView.LayoutManager lm,lm1;
     public String url = "http://192.168.0.5:8084/Lab_Project/JsonServlet";
     public String infoUrl = "http://192.168.0.5:8084/Lab_Project/InfoServlet";
+    public String prourl = "http://192.168.0.5:8084/Lab_Project/ProfileServlet";
     RecyclerAdapter adapter;
     RecyclerInfoAdapter adapter1;
     public static final String KEY_USERNAME="sname";
-    String nm;
+    public static final String KEY_Profile="usrnm";
+    TextView tv1,tv2;
+    List<ProfileKey> li = new ArrayList<>();
+    String nm,sta;
+    Button btn;
 
 
     @Override
@@ -51,9 +62,14 @@ public class User extends AppCompatActivity{
 
         Bundle b = this.getIntent().getExtras();
         nm = b.getString("name");
+        sta = b.getString("status");
 
         Log.d("login name to end",nm);
 
+        tv1 = (TextView)findViewById(R.id.u_name);
+        tv2 = (TextView)findViewById(R.id.u_mob);
+        btn = (Button)findViewById(R.id.u_pass);
+        btn.setOnClickListener(this);
 
         /* TabHost Setup*/
         TabHost host = (TabHost)findViewById(R.id.tabhost);
@@ -96,6 +112,8 @@ public class User extends AppCompatActivity{
         spec.setIndicator("Profile");
         host.addTab(spec);
 
+        getProfile(nm);
+
     }
 
 
@@ -125,6 +143,12 @@ public class User extends AppCompatActivity{
             case R.id.exit:
                 finish();
                 System.exit(0);
+                break;
+            case R.id.action_drawer_cart:
+                Intent inn=new Intent(this,Cart.class);
+                inn.putExtra("name",nm);
+                inn.putExtra("status",sta);
+                startActivities(new Intent[]{inn});
                 break;
 
         }
@@ -197,4 +221,49 @@ public class User extends AppCompatActivity{
 
     }
 
+    public void getProfile(String na)
+    {
+        final String nam = na;
+        StringRequest stringRequest = new StringRequest(Request.Method.POST,prourl, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                Log.d("res",response);
+                GsonBuilder builder = new GsonBuilder();
+                Gson gson = builder.create();
+
+                List<ProfileKey> list1 = Arrays.asList(gson.fromJson(response,ProfileKey[].class));
+                li = list1;
+                tv1.setText(list1.get(0).getUname());
+                tv2.setText(list1.get(0).getContact());
+
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+
+                Map<String,String> map = new HashMap<String,String>();
+                map.put(KEY_Profile,nam);
+                return map;
+            }
+        };
+
+        RequestQueue requestQueue = Volley.newRequestQueue(User.this);
+        requestQueue.add(stringRequest);
+    }
+
+    @Override
+    public void onClick(View v) {
+        Intent in = new Intent(this,Change_Pass.class);
+        Bundle bu = new Bundle();
+        bu.putString("name",nm);
+        in.putExtras(bu);
+        startActivity(in);
+    }
 }
