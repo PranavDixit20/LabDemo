@@ -16,7 +16,6 @@
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -28,7 +27,15 @@
         <activity android:name=".Desp" />
         <activity android:name=".Register" />
         <activity android:name=".Change_Pass" />
-        <activity android:name=".Cart"></activity>
+        <activity android:name=".Cart" />
+
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="50a4f12bd215831edff091ca375ca13e300247d5" />
+
+        <activity android:name=".UserDelete">
+
+        </activity>
     </application>
 
 </manifest>

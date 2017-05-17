@@ -1,6 +1,8 @@
 package com.example.pranav.labdemo;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -33,7 +35,7 @@ import java.util.Map;
 public class Desp extends AppCompatActivity implements View.OnClickListener {
 
     Toolbar tb;
-    TextView tv,tv1;
+    TextView tv,tv1,tv2;
     String nam,un,stat;
     public String url = "http://192.168.0.5:8084/Lab_Project/JsonServlet";
     public static final String KEY_DESP="descript";
@@ -60,6 +62,7 @@ public class Desp extends AppCompatActivity implements View.OnClickListener {
 
         tv = (TextView)findViewById(R.id.dsp);
         tv1 = (TextView)findViewById(R.id.note);
+        tv2 = (TextView)findViewById(R.id.ti);
 
         tv1.setVisibility(View.GONE);
 
@@ -93,6 +96,9 @@ public class Desp extends AppCompatActivity implements View.OnClickListener {
                 List<Decsript> list1 = Arrays.asList(gson.fromJson(response,Decsript[].class));
                 li = list1;
                 tv.setText(li.get(p).getDescript());
+                tv.setTextColor(Color.parseColor("#827690"));
+                tv2.setText(nam);
+                tv2.setPaintFlags(tv2.getPaintFlags()| Paint.UNDERLINE_TEXT_FLAG);
                 if (stat.equals("avaliable")){
                     b.setVisibility(View.VISIBLE);
                     b1.setVisibility(View.VISIBLE);

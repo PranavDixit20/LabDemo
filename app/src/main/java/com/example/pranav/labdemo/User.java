@@ -52,7 +52,7 @@ public class User extends AppCompatActivity implements View.OnClickListener {
     TextView tv1,tv2;
     List<ProfileKey> li = new ArrayList<>();
     String nm,sta;
-    Button btn;
+    Button btn,btn1;
 
 
     @Override
@@ -69,7 +69,9 @@ public class User extends AppCompatActivity implements View.OnClickListener {
         tv1 = (TextView)findViewById(R.id.u_name);
         tv2 = (TextView)findViewById(R.id.u_mob);
         btn = (Button)findViewById(R.id.u_pass);
+        btn1 =(Button)findViewById(R.id.delete);
         btn.setOnClickListener(this);
+        btn1.setOnClickListener(this);
 
         /* TabHost Setup*/
         TabHost host = (TabHost)findViewById(R.id.tabhost);
@@ -260,10 +262,28 @@ public class User extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        Intent in = new Intent(this,Change_Pass.class);
-        Bundle bu = new Bundle();
-        bu.putString("name",nm);
-        in.putExtras(bu);
-        startActivity(in);
+
+        switch (v.getId())
+        {
+            case R.id.u_pass:
+
+                Intent in = new Intent(this,Change_Pass.class);
+                Bundle bu = new Bundle();
+                bu.putString("name",nm);
+                in.putExtras(bu);
+                startActivity(in);
+
+                break;
+            case R.id.delete:
+
+                Intent inte = new Intent(this,UserDelete.class);
+                Bundle bun = new Bundle();
+                bun.putString("name",nm);
+                inte.putExtras(bun);
+                startActivity(inte);
+
+                break;
+        }
+
     }
 }
