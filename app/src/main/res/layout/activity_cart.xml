@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/toolbarfile" android:id="@+id/tbar"/>
+
+        <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="* Long Press To Remove Item *"
+        android:textStyle="bold"
+            android:id="@+id/note1"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="15dp"
+            android:gravity="center"   />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/shape"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp">
+
+        <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/lv"
+        android:divider="#f00"
+        android:dividerHeight="1dp"
+        android:listSelector="#FF9933" />
+
+    </LinearLayout>
+
+</LinearLayout>

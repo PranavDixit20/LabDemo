@@ -30,7 +30,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
     Button b;
     String s,s1,s2;
     String a,a1,a2;
-    public static final String LOGIN_URL = "http://192.168.0.4:8084/Lab_Project/RegisterServlet";
+    public static final String LOGIN_URL = "http://192.168.0.5:8084/Lab_Project/RegisterServlet";
     public static final String KEY_USERNAME="rname";
     public static final String KEY_NUMBER="rmob";
     public static final String KEY_PASSWORD="rpass";
@@ -57,31 +57,31 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
         if (p){
             userRegister(s,s1,s2);
         }
+        else
+        {
+            Toast.makeText(Register.this,"something is wrong",Toast.LENGTH_LONG ).show();
+        }
 
     }
 
-    private boolean validate(String s,String s1,String s2) {
+    private boolean validate(String p,String p1,String p2) {
 
-        if (TextUtils.isEmpty(s)){
+        if (p.length() == 0){
             e.setError("enter Your name");
             return false;
         }
-        if (TextUtils.isEmpty(s1)){
+        if (p1.length() == 0){
             e1.setError("enter your mob");
             return false;
         }
-        if (TextUtils.isEmpty(s2)){
+        if (p2.length() == 0){
             e2.setError("enter your pass");
             return false;
         }
         return true;
     }
 
-    private void userRegister( String p, String p1, String p2) {
-
-        a = p;
-        a1 = p1;
-        a2 = p2;
+    private void userRegister(final String a, final String a1, final String a2) {
 
         Log.d("user name",a);
         Log.d("user mob ",a1);

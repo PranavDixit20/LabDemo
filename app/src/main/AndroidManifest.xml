@@ -26,7 +26,9 @@
         <activity android:name=".AboutUs" />
         <activity android:name=".Help" />
         <activity android:name=".Desp" />
-        <activity android:name=".Register"/>
+        <activity android:name=".Register" />
+        <activity android:name=".Change_Pass" />
+        <activity android:name=".Cart"></activity>
     </application>
 
 </manifest>

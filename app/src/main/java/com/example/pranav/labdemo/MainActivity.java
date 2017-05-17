@@ -29,6 +29,7 @@ import com.android.volley.Response.ErrorListener;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.pranav.labdemo.SqLite.DataBase;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -54,6 +55,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     EditText et, et1;
     Button b,b1;
+    DataBase db;
 
     public static final String LOGIN_URL = "http://192.168.0.5:8084/Lab_Project/DbConnection";
     public static final String KEY_USERNAME="name";
@@ -76,6 +78,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         b1 = (Button)findViewById(R.id.reg);
         b.setOnClickListener(this);
         b1.setOnClickListener(this);
+
+        db = new DataBase(this);
     }
 
 
@@ -84,6 +88,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()){
             case R.id.login :
                 d = et.getText().toString();
+                db.CartTable(d);
                 // String s1 = et.getText().toString();
                 // String s2 = et1.getText().toString();
                 // new ExecuteTask().execute(s1, s2);

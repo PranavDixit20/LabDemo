@@ -96,6 +96,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
             in.putExtra("nam",alist.getBook_nme());
             in.putExtra("pos",position);
             in.putExtra("name",nm);
+            in.putExtra("status",alist.getStat());
             this.ctx.startActivities(new Intent[]{in});
         }
 

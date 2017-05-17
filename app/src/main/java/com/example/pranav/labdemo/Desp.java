@@ -8,7 +8,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -18,6 +20,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.pranav.labdemo.JsonKeys.Decsript;
+import com.example.pranav.labdemo.SqLite.DataBase;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -30,12 +33,14 @@ import java.util.Map;
 public class Desp extends AppCompatActivity implements View.OnClickListener {
 
     Toolbar tb;
-    TextView tv;
-    String nam,un;
+    TextView tv,tv1;
+    String nam,un,stat;
     public String url = "http://192.168.0.5:8084/Lab_Project/JsonServlet";
     public static final String KEY_DESP="descript";
     List<Decsript> li = new ArrayList<>();
     int p;
+    DataBase db;
+    Button b,b1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,13 +53,29 @@ public class Desp extends AppCompatActivity implements View.OnClickListener {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         tb.setNavigationOnClickListener(this);
 
+       /* MenuItem item = (MenuItem) findViewById(R.id.action_drawer_cart);
+        item.setVisible(false);
+        this.invalidateOptionsMenu();*/
+
 
         tv = (TextView)findViewById(R.id.dsp);
+        tv1 = (TextView)findViewById(R.id.note);
+
+        tv1.setVisibility(View.GONE);
+
+        b = (Button)findViewById(R.id.buy);
+        b.setVisibility(View.GONE);
+        b.setOnClickListener(this);
+
+        b1 = (Button)findViewById(R.id.cart);
+        b1.setVisibility(View.GONE);
+        b1.setOnClickListener(this);
 
         Bundle b = this.getIntent().getExtras();
         nam = b.getString("nam");
         un = b.getString("name");
         p = b.getInt("pos");
+        stat = b.getString("status");
         getDescr();
     }
 
@@ -72,7 +93,16 @@ public class Desp extends AppCompatActivity implements View.OnClickListener {
                 List<Decsript> list1 = Arrays.asList(gson.fromJson(response,Decsript[].class));
                 li = list1;
                 tv.setText(li.get(p).getDescript());
-
+                if (stat.equals("avaliable")){
+                    b.setVisibility(View.VISIBLE);
+                    b1.setVisibility(View.VISIBLE);
+                    tv1.setVisibility(View.GONE);
+                }
+                else {
+                    b.setVisibility(View.GONE);
+                    b1.setVisibility(View.VISIBLE);
+                    tv1.setVisibility(View.VISIBLE);
+                }
 
             }
         }, new Response.ErrorListener() {
@@ -124,10 +154,35 @@ public class Desp extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-       Intent in = new Intent(Desp.this,User.class);
-       Bundle bu = new Bundle();
-        bu.putString("name",un);
-        in.putExtras(bu);
-        startActivity(in);
+
+        switch (v.getId()){
+
+            case R.id.buy:
+                break;
+            case R.id.cart:
+                db = new DataBase(this);
+                int i = db.save(nam,un);
+                if (i == 1) {
+                    Toast.makeText(this, "Your have already save this book", Toast.LENGTH_LONG).show();
+                    Log.d("ok", nam);
+
+                } else {
+                    v.setSelected(true);
+                    Toast.makeText(this, "Your book is in cart", Toast.LENGTH_LONG).show();
+                    Log.d("ok", nam);
+
+                }
+
+                break;
+            default:
+                Intent in = new Intent(Desp.this,User.class);
+                Bundle bu = new Bundle();
+                bu.putString("name",un);
+                bu.putString("status",stat);
+                in.putExtras(bu);
+                startActivity(in);
+                break;
+        }
+
     }
 }
