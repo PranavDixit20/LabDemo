@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button b,b1;
     DataBase db;
 
-    public static final String LOGIN_URL = "http://192.168.0.5:8084/Lab_Project/DbConnection";
+    public static final String LOGIN_URL = "http://116.74.187.233:8084/Lab_Project/DbConnection";
     public static final String KEY_USERNAME="name";
     public static final String KEY_PASSWORD="pass";
     private String Username;
@@ -102,6 +102,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.reg :
                 startActivity(new Intent(MainActivity.this,Register.class));
                 break;
+
 
         }
 
@@ -208,7 +209,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 HttpConnectionParams.setSoTimeout(httpRequestParams, 3000);
 
                 HttpClient hp = new DefaultHttpClient();
-                HttpPost httpPost = new HttpPost("http://192.168.0.4:8084/Lab_Project/DbConnection");
+                HttpPost httpPost = new HttpPost("http://116.74.187.233:8084/Lab_Project/DbConnection");
                 Log.d("connection", "success");
                 List<NameValuePair> list = new ArrayList<NameValuePair>();
                 list.add(new BasicNameValuePair("name", valuse[0]));

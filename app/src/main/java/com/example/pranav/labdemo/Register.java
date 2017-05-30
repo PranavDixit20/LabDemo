@@ -44,7 +44,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
     Button b;
     String s,s1,s2;
     String a,a1,a2;
-    public static final String LOGIN_URL = "http://192.168.0.5:8084/Lab_Project/RegisterServlet";
+    public static final String LOGIN_URL = "http://116.74.187.233:8084/Lab_Project/RegisterServlet";
     public static final String KEY_USERNAME="rname";
     public static final String KEY_NUMBER="rmob";
     public static final String KEY_PASSWORD="rpass";

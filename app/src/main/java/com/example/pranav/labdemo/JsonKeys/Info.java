@@ -6,7 +6,7 @@ package com.example.pranav.labdemo.JsonKeys;
 
 public class Info {
 
-    public String book_name,assign_date,due_date;
+    public String book_name,assign_date,due_date,status;
 
     public String getBook_name() {
         return book_name;
@@ -18,5 +18,9 @@ public class Info {
 
     public String getDue_date() {
         return due_date;
+    }
+
+    public String getStatus() {
+        return status;
     }
 }

@@ -1,13 +1,17 @@
 package com.example.pranav.labdemo;
 
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -42,9 +46,9 @@ public class User extends AppCompatActivity implements View.OnClickListener {
     Toolbar tb;
     RecyclerView rv,rv1;
     RecyclerView.LayoutManager lm,lm1;
-    public String url = "http://192.168.0.5:8084/Lab_Project/JsonServlet";
-    public String infoUrl = "http://192.168.0.5:8084/Lab_Project/InfoServlet";
-    public String prourl = "http://192.168.0.5:8084/Lab_Project/ProfileServlet";
+    public String url = "http://116.74.187.233:8084/Lab_Project/JsonServlet";
+    public String infoUrl = "http://116.74.187.233:8084/Lab_Project/InfoServlet";
+    public String prourl = "http://116.74.187.233:8084/Lab_Project/ProfileServlet";
     RecyclerAdapter adapter;
     RecyclerInfoAdapter adapter1;
     public static final String KEY_USERNAME="sname";
@@ -53,7 +57,6 @@ public class User extends AppCompatActivity implements View.OnClickListener {
     List<ProfileKey> li = new ArrayList<>();
     String nm,sta;
     Button btn,btn1;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,19 +102,19 @@ public class User extends AppCompatActivity implements View.OnClickListener {
         //Tab 1
         TabHost.TabSpec spec = host.newTabSpec("Home");
         spec.setContent(R.id.Home);
-        spec.setIndicator("Home");
+        spec.setIndicator("",getResources().getDrawable(R.drawable.ic_home));
         host.addTab(spec);
 
         //Tab 2
         spec = host.newTabSpec("Info");
         spec.setContent(R.id.Info);
-        spec.setIndicator("Info");
+        spec.setIndicator("",getResources().getDrawable(R.drawable.ic_list));
         host.addTab(spec);
 
         //Tab 3
         spec = host.newTabSpec("Profile");
         spec.setContent(R.id.Profile);
-        spec.setIndicator("Profile");
+        spec.setIndicator("",getResources().getDrawable(R.drawable.ic_profile));
         host.addTab(spec);
 
         getProfile(nm);
@@ -122,10 +125,12 @@ public class User extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     public boolean onCreateOptionsMenu (Menu menu){
-        getMenuInflater().inflate(R.menu.menu_main,menu);
+       getMenuInflater().inflate(R.menu.menu_main,menu);
+
         return super.onCreateOptionsMenu(menu);
 
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem menuItem)

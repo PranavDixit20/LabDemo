@@ -11,10 +11,13 @@
     <item android:title="LogOut"
         android:id="@+id/exit"
         app:showAsAction="never"/>
+
     <item
         android:id="@+id/action_drawer_cart"
-        android:orderInCategory="200"
+        android:orderInCategory="201"
         android:title="scart"
-        android:icon="@mipmap/shopping_cart"
-        app:showAsAction="ifRoom"/>
+        android:icon="@drawable/ic_shopping_cart_black_24dp"
+        app:showAsAction="always"/>
+
+
 </menu>
