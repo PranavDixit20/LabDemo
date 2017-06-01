@@ -116,7 +116,7 @@ public class Cart extends AppCompatActivity implements View.OnClickListener, Ada
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-        cat = parent.getItemAtPosition(position).toString();
+        /*cat = parent.getItemAtPosition(position).toString();
         db = new DataBase(this);
         ds = new Desp();
         cat = parent.getItemAtPosition(position).toString();
@@ -128,7 +128,15 @@ public class Cart extends AppCompatActivity implements View.OnClickListener, Ada
         b.putString("name",nm);
         b.putString("status",stat);
         in.putExtras(b);
-        startActivity(in);
+        startActivity(in);*/
+
+        mat = parent.getItemAtPosition(position).toString();
+
+        PopupMenu pop = new PopupMenu(this,view);
+        pop.setOnMenuItemClickListener(this);
+        pop.getMenuInflater().inflate(R.menu.buymenu, pop.getMenu());
+        pop.show();
+
 
     }
 

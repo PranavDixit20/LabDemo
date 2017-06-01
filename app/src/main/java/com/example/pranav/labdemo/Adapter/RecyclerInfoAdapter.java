@@ -1,5 +1,6 @@
 package com.example.pranav.labdemo.Adapter;
 
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,6 +43,15 @@ public class RecyclerInfoAdapter extends RecyclerView.Adapter<RecyclerInfoAdapte
         holder.name.setText(list.get(position).getBook_name());
         holder.adate.setText(list.get(position).getAssign_date());
         holder.dudate.setText(list.get(position).getDue_date());
+        String p = list.get(position).getStatus();
+
+        if(p.equals("return")) {
+            holder.status.setTextColor(Color.GREEN);}
+        if (p.equals("not return")){
+            holder.status.setTextColor(Color.RED);
+        }
+        holder.status.setText(p);
+
 
     }
 
@@ -52,7 +62,7 @@ public class RecyclerInfoAdapter extends RecyclerView.Adapter<RecyclerInfoAdapte
 
     public static class MyViewholder extends RecyclerView.ViewHolder
     {
-        TextView name,adate,dudate;
+        TextView name,adate,dudate,status;
 
         public MyViewholder(View itemView) {
             super(itemView);
@@ -61,6 +71,7 @@ public class RecyclerInfoAdapter extends RecyclerView.Adapter<RecyclerInfoAdapte
             name = (TextView)itemView.findViewById(R.id.b_nm);
             adate = (TextView)itemView.findViewById(R.id.b_ass);
             dudate = (TextView)itemView.findViewById(R.id.b_due);
+            status = (TextView)itemView.findViewById(R.id.status);
 
         }
     }
