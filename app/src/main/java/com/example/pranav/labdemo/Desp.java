@@ -191,4 +191,14 @@ public class Desp extends AppCompatActivity implements View.OnClickListener {
         }
 
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent in = new Intent(Desp.this,User.class);
+        Bundle bu = new Bundle();
+        bu.putString("name",un);
+        bu.putString("status",stat);
+        in.putExtras(bu);
+        startActivity(in);
+    }
 }

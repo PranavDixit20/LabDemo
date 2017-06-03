@@ -64,4 +64,11 @@ public class Help extends AppCompatActivity implements View.OnClickListener {
         in.putExtra("name",nm);
         startActivities(new Intent[]{in});
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent in=new Intent(this,User.class);
+        in.putExtra("name",nm);
+        startActivities(new Intent[]{in});
+    }
 }

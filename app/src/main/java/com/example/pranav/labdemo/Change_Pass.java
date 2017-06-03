@@ -131,6 +131,15 @@ public class Change_Pass extends AppCompatActivity implements View.OnClickListen
 
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent in = new Intent(Change_Pass.this,User.class);
+        Bundle bu = new Bundle();
+        bu.putString("name",nam);
+        in.putExtras(bu);
+        startActivity(in);
+    }
+
     private boolean validate(String p1, String p2, String p3) {
 
         if (p1.length() == 0){
