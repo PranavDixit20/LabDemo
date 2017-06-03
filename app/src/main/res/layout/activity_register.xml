@@ -39,13 +39,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-   <!-- <TextView
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:text="Mobile Number"
+        android:id="@+id/dpo"
+        android:text="Deposit Amount"
         android:textStyle="bold"
         android:gravity="center"
         android:textSize="20sp"
@@ -54,14 +55,14 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:hint="Mobile Number"
+        android:hint="Deposit Amount 1000/-"
         android:gravity="center"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="5dp"
         android:id="@+id/mnum"
-        android:inputType="phone"
-        android:background="@drawable/shape" /> -->
+        android:inputType="number"
+        android:background="@drawable/shape" />
 
     <TextView
         android:layout_width="match_parent"

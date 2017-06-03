@@ -81,6 +81,15 @@ public class UserDelete extends AppCompatActivity implements View.OnClickListene
 
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent in = new Intent(this,User.class);
+        Bundle bu = new Bundle();
+        bu.putString("name",nm);
+        in.putExtras(bu);
+        startActivity(in);
+    }
+
     private boolean validate(String p1) {
 
         if (p1.length() == 0){

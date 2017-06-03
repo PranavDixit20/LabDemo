@@ -2,8 +2,11 @@ package com.example.pranav.labdemo;
 
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.view.MenuItemCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,9 +17,11 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TabHost;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -41,7 +46,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class User extends AppCompatActivity implements View.OnClickListener {
+public class User extends AppCompatActivity implements View.OnClickListener, SearchView.OnQueryTextListener {
 
     Toolbar tb;
     RecyclerView rv,rv1;
@@ -55,9 +60,9 @@ public class User extends AppCompatActivity implements View.OnClickListener {
     public static final String KEY_Profile="usrnm";
     TextView tv1,tv2;
     List<ProfileKey> li = new ArrayList<>();
-    String nm,sta;
+    String nm,sta,d;
     Button btn,btn1;
-
+    SearchView searchView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,13 +71,13 @@ public class User extends AppCompatActivity implements View.OnClickListener {
         Bundle b = this.getIntent().getExtras();
         nm = b.getString("name");
         sta = b.getString("status");
-
         Log.d("login name to end",nm);
 
         tv1 = (TextView)findViewById(R.id.u_name);
         tv2 = (TextView)findViewById(R.id.u_mob);
         btn = (Button)findViewById(R.id.u_pass);
         btn1 =(Button)findViewById(R.id.delete);
+
         btn.setOnClickListener(this);
         btn1.setOnClickListener(this);
 
@@ -82,6 +87,13 @@ public class User extends AppCompatActivity implements View.OnClickListener {
 
         /* Toolbar Setup*/
         tb=(Toolbar)findViewById(R.id.tbar);
+        searchView = (SearchView) tb.findViewById(R.id.srch);
+        if (searchView != null) {
+            SearchManager manager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+            searchView.setSearchableInfo(manager.getSearchableInfo(getComponentName()));
+            searchView.setOnQueryTextListener(this);
+
+        }
         setSupportActionBar(tb);
 
         /* Recycler View Setup 1*/
@@ -118,17 +130,12 @@ public class User extends AppCompatActivity implements View.OnClickListener {
         host.addTab(spec);
 
         getProfile(nm);
-
     }
-
-
-
     @Override
     public boolean onCreateOptionsMenu (Menu menu){
        getMenuInflater().inflate(R.menu.menu_main,menu);
 
         return super.onCreateOptionsMenu(menu);
-
     }
 
 
@@ -215,7 +222,6 @@ public class User extends AppCompatActivity implements View.OnClickListener {
                 adapter = new RecyclerAdapter(nm,list,User.this);
                 rv.setAdapter(adapter);
 
-
             }
         }, new Response.ErrorListener() {
             @Override
@@ -243,6 +249,8 @@ public class User extends AppCompatActivity implements View.OnClickListener {
                 li = list1;
                 tv1.setText(list1.get(0).getUname());
                 tv2.setText(list1.get(0).getContact());
+                d = list1.get(0).getStatus();
+                Log.d("delete acc",d);
 
 
             }
@@ -277,18 +285,52 @@ public class User extends AppCompatActivity implements View.OnClickListener {
                 bu.putString("name",nm);
                 in.putExtras(bu);
                 startActivity(in);
-
                 break;
             case R.id.delete:
 
-                Intent inte = new Intent(this,UserDelete.class);
-                Bundle bun = new Bundle();
-                bun.putString("name",nm);
-                inte.putExtras(bun);
-                startActivity(inte);
+                if ( d.equals("not return")){
+                    Toast.makeText(this, "please first return book", Toast.LENGTH_LONG).show();
+                }
+                else{
 
+                    Intent inte = new Intent(this,UserDelete.class);
+                    Bundle bun = new Bundle();
+                    bun.putString("name",nm);
+                    inte.putExtras(bun);
+                    startActivity(inte);
+                }
                 break;
         }
 
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        Log.d("search query ", query);
+        return true;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+
+        Log.d("search text ", newText);
+        return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        new AlertDialog.Builder(this).setTitle("Exit")
+                .setMessage("Are you sure?")
+                .setPositiveButton("yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        Intent intent = new Intent(Intent.ACTION_MAIN);
+                        intent.addCategory(Intent.CATEGORY_HOME);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                        finish();
+                    }
+                }).setNegativeButton("no", null).show();
     }
 }

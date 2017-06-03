@@ -14,17 +14,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
-        <SearchView
+        <android.support.v7.widget.SearchView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/srch"
-            android:layout_alignParentRight="true"/>
+            android:layout_alignParentRight="true"
+            android:queryHint="Book Name"/>
 
 
 
     </RelativeLayout>
 
-
-    </android.support.v7.widget.Toolbar>
+</android.support.v7.widget.Toolbar>
 
 

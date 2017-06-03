@@ -5,7 +5,7 @@ package com.example.pranav.labdemo.JsonKeys;
  */
 
 public class ProfileKey {
-    public String uname,contact;
+    public String uname,contact,status;
 
     public String getUname() {
         return uname;
@@ -13,6 +13,9 @@ public class ProfileKey {
 
     public String getContact() {
         return contact;
+    }
+    public String getStatus() {
+        return status;
     }
 
 

@@ -40,14 +40,15 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
     private static final String TWITTER_SECRET = "Jj3A0YlJ6zCaYZo0M9Txmh1fpKDsuO6SitHfybxbYl6hUgA8RQ";
 
     EditText e,e1,e2;
-    TextView tv;
+    TextView tv,tv1;
     Button b;
-    String s,s1,s2;
+    String s,s1,s2,s3;
     String a,a1,a2;
     public static final String LOGIN_URL = "http://116.74.187.233:8084/Lab_Project/RegisterServlet";
     public static final String KEY_USERNAME="rname";
     public static final String KEY_NUMBER="rmob";
     public static final String KEY_PASSWORD="rpass";
+    public static final String KEY_AMT="deposit";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,9 +58,13 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
         setContentView(R.layout.activity_register);
 
         e = (EditText)findViewById(R.id.uname);
+        e1 = (EditText)findViewById(R.id.mnum);
+        e1.setVisibility(View.GONE);
         e2 = (EditText)findViewById(R.id.rpass);
         e2.setVisibility(View.GONE);
         tv = (TextView)findViewById(R.id.p);
+        tv.setVisibility(View.GONE);
+        tv1 = (TextView)findViewById(R.id.dpo);
         tv.setVisibility(View.GONE);
         b = (Button) findViewById(R.id.regs);
         b.setVisibility(View.GONE);
@@ -72,8 +77,10 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                 // TODO: associate the session userID with your user model
                 Toast.makeText(getApplicationContext(), "Authentication successful for "
                         + phoneNumber, Toast.LENGTH_LONG).show();
-                    s1 = phoneNumber;
+                    s3 = phoneNumber;
                     tv.setVisibility(View.VISIBLE);
+                    tv.setVisibility(View.VISIBLE);
+                    e1.setVisibility(View.VISIBLE);
                     e2.setVisibility(View.VISIBLE);
                     b.setVisibility(View.VISIBLE);
                 Log.d("Digits", phoneNumber);
@@ -91,11 +98,12 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
     public void onClick(View v) {
 
         s = e.getText().toString().trim();
+        s1 = e1.getText().toString().trim();
         s2 = e2.getText().toString().trim();
 
-        boolean p = validate(s,s2);
+        boolean p = validate(s,s1,s2);
         if (p){
-            userRegister(s,s1,s2);
+            userRegister(s,s1,s2,s3);
         }
         else
         {
@@ -104,12 +112,18 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
 
     }
 
-    private boolean validate(String p,String p2) {
+    private boolean validate(String p,String p1,String p2) {
 
         if (p.length() == 0){
             e.setError("enter Your name");
             return false;
         }
+
+        if (p1.length() == 0 && p1.equals("1000")){
+            e.setError("enter Deposit Amount min 1000/-");
+            return false;
+        }
+
         if (p2.length() == 0){
             e2.setError("enter your pass");
             return false;
@@ -117,11 +131,12 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
         return true;
     }
 
-    private void userRegister(final String a, final String a1, final String a2) {
+    private void userRegister(final String a, final String a1, final String a2, final String a3 ) {
 
         Log.d("user name",a);
-        Log.d("user mob ",a1);
+        Log.d("user amut ",a1);
         Log.d("user pass",a2);
+        Log.d("user mob",a3);
 
         StringRequest sr = new StringRequest(Request.Method.POST,LOGIN_URL, new Response.Listener<String>() {
             @Override
@@ -163,8 +178,9 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
             protected Map<String, String > getParams() throws AuthFailureError {
                 Map<String,String> map = new HashMap<String,String>();
                 map.put(KEY_USERNAME,a);
-                map.put(KEY_NUMBER,a1);
+                map.put(KEY_NUMBER,a3);
                 map.put(KEY_PASSWORD,a2);
+                map.put(KEY_AMT,a1);
                 return map;
             }
         };

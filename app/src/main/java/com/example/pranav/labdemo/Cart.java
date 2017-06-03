@@ -81,6 +81,16 @@ public class Cart extends AppCompatActivity implements View.OnClickListener, Ada
     }
 
     @Override
+    public void onBackPressed() {
+        Intent ib = new Intent(this,User.class);
+        Bundle bu = new Bundle();
+        bu.putString("name",nm);
+        bu.putString("status",stat);
+        ib.putExtras(bu);
+        startActivity(ib);
+    }
+
+    @Override
     public boolean onCreateOptionsMenu (Menu menu){
         getMenuInflater().inflate(R.menu.menu_main,menu);
         menu.findItem(R.id.action_drawer_cart).setVisible(false);
