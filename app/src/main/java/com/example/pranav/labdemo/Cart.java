@@ -57,6 +57,8 @@ public class Cart extends AppCompatActivity implements View.OnClickListener, Ada
         nm = b.getString("name");
         stat=b.getString("status");
 
+        cat = stat;
+
         db=new DataBase(this);
         pr2=db.cheak(nm);
 
@@ -126,26 +128,32 @@ public class Cart extends AppCompatActivity implements View.OnClickListener, Ada
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-        /*cat = parent.getItemAtPosition(position).toString();
-        db = new DataBase(this);
-        ds = new Desp();
-        cat = parent.getItemAtPosition(position).toString();
-
+      /*  cat = parent.getItemAtPosition(position).toString();
+        Log.d("select book name",cat);
 
         in = new Intent(this,Desp.class);
         b = new Bundle();
         b.putString("nam",cat);
         b.putString("name",nm);
         b.putString("status",stat);
+        b.putInt("pos",position);
         in.putExtras(b);
         startActivity(in);*/
 
-        mat = parent.getItemAtPosition(position).toString();
+       /* if (stat == "avaliable")
+        {
+            mat = parent.getItemAtPosition(position).toString();
 
-        PopupMenu pop = new PopupMenu(this,view);
-        pop.setOnMenuItemClickListener(this);
-        pop.getMenuInflater().inflate(R.menu.buymenu, pop.getMenu());
-        pop.show();
+            PopupMenu pop = new PopupMenu(this,view);
+            pop.setOnMenuItemClickListener(this);
+            pop.getMenuInflater().inflate(R.menu.buymenu, pop.getMenu());
+            pop.show();
+        }
+        else {
+            Toast.makeText(getBaseContext()," Book Is Not Available",Toast.LENGTH_LONG).show();
+        }*/
+
+
 
 
     }
@@ -154,6 +162,8 @@ public class Cart extends AppCompatActivity implements View.OnClickListener, Ada
     public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
 
         mat = parent.getItemAtPosition(position).toString();
+
+        Log.d("bookname is",mat);
 
         PopupMenu pop = new PopupMenu(this,view);
         pop.setOnMenuItemClickListener(this);

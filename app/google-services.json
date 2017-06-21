@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "753990162372",
+    "firebase_url": "https://labdemo-9a77e.firebaseio.com",
+    "project_id": "labdemo-9a77e",
+    "storage_bucket": "labdemo-9a77e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:753990162372:android:1215f537cfe61ffb",
+        "android_client_info": {
+          "package_name": "com.example.pranav.labdemo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "753990162372-iis4m9h2n6q08uc7upes592apk2g8jjq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.pranav.labdemo",
+            "certificate_hash": "0ed0321f7bb5d09739027a84e7311013d7e9781e"
+          }
+        },
+        {
+          "client_id": "753990162372-p3d794d66jgfrug5gqf5n3651jvrs8oh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBTl1nZAr_3tRVCf77c7GXEPslTWBQrfoo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "753990162372-p3d794d66jgfrug5gqf5n3651jvrs8oh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
