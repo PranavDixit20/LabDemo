@@ -19,7 +19,9 @@
             android:layout_height="wrap_content"
             android:id="@+id/srch"
             android:layout_alignParentRight="true"
-            android:queryHint="Book Name"/>
+            android:text="font roboto regular"
+            android:inputType="textCapWords"
+            android:capitalize="words"/>
 
 
 

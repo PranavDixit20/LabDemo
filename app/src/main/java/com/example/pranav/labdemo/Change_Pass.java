@@ -35,7 +35,7 @@ public class Change_Pass extends AppCompatActivity implements View.OnClickListen
     String nam,s1,s2,s3;
     Intent in;
     Bundle bu;
-    public String url = "http://116.74.187.233:8084/Lab_Project/ChangePasswordServlet";
+    public String url = "http://116.75.138.232:8084/Lab_Project/ChangePasswordServlet";
     public static final String KEY_name="uname";
     public static final String KEY_old_pass="oldpass";
     public static final String KEY_new_pass="newpass";

@@ -48,6 +48,16 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
 
 
         holder.name.setText(list.get(position).getBook_nme());
+        Log.d("list of books", String.valueOf(list.get(2).getBook_nme()));
+        String xp,xp1,xp3;
+        xp = list.get(0).getBook_nme();
+        xp1 = list.get(1).getBook_nme();
+        xp3 = list.get(2).getBook_nme();
+
+        Log.d("listof books",xp);
+        Log.d("listof books",xp1);
+        Log.d("listof books",xp3);
+
         holder.qunt.setText(list.get(position).getQuantity());
         String p = list.get(position).getStat();
         Log.d("Status",p);

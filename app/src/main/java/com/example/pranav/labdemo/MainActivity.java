@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
+import android.provider.CalendarContract;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -51,7 +52,10 @@ import org.apache.http.params.HttpParams;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -62,14 +66,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button b,b1;
     DataBase db;
 
-    public static final String LOGIN_URL = "http://116.74.187.233:8084/Lab_Project/DbConnection";
+    public static final String LOGIN_URL = "http://116.75.138.232:8084/Lab_Project/DbConnection";
     public static final String KEY_USERNAME="name";
     public static final String KEY_PASSWORD="pass";
     private String Username;
     private String Password;
     Intent in;
     Bundle bu;
-    String d;
+    String d,date;
+
+    int day,month,year;
 
 
     @Override
