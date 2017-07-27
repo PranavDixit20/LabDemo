@@ -1,8 +1,10 @@
 package com.example.pranav.labdemo;
 
 import android.app.ActivityOptions;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.provider.CalendarContract;
@@ -73,9 +75,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private String Password;
     Intent in;
     Bundle bu;
-    String d,date;
+    String d;
 
-    int day,month,year;
+    public static final String MyPREFERENCES = "MyPrefs" ;
+    public static final String U_Name = "nameKey";
+    public static final String U_Password = "passwordKey";
+
+    SharedPreferences sharedpreferences;
 
 
     @Override
@@ -89,6 +95,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         b1 = (Button)findViewById(R.id.reg);
         b.setOnClickListener(this);
         b1.setOnClickListener(this);
+
+        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
         db = new DataBase(this);
     }
@@ -128,6 +136,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void onResponse(String response) {
                 Log.d("res",response);
                 if (response.contains("success")) {
+
+                    SharedPreferences.Editor editor = sharedpreferences.edit();
+
+                    editor.putString(U_Name, Username);
+                    editor.putString(U_Password, Password);
+
+                    editor.commit();
+
 
                     in = new Intent(MainActivity.this,User.class);
                     bu = new Bundle();

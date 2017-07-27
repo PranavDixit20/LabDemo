@@ -1,6 +1,8 @@
 package com.example.pranav.labdemo;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -116,8 +118,10 @@ public class Cart extends AppCompatActivity implements View.OnClickListener, Ada
                 startActivities(new Intent[]{i});
                 break;
             case R.id.exit:
-                finish();
-                System.exit(0);
+                SharedPreferences sharedpreferences = getSharedPreferences(MainActivity.MyPREFERENCES, Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedpreferences.edit();
+                editor.clear();
+                editor.commit();
                 break;
 
         }

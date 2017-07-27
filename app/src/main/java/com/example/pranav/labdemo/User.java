@@ -4,6 +4,7 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AlertDialog;
@@ -161,8 +162,10 @@ public class User extends AppCompatActivity implements View.OnClickListener, Sea
                 startActivities(new Intent[]{i});
                 break;
             case R.id.exit:
-                finish();
-                System.exit(0);
+                SharedPreferences sharedpreferences = getSharedPreferences(MainActivity.MyPREFERENCES, Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedpreferences.edit();
+                editor.clear();
+                editor.commit();
                 break;
             case R.id.action_drawer_cart:
                 Intent inn=new Intent(this,Cart.class);
