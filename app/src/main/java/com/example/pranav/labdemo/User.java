@@ -54,15 +54,16 @@ public class User extends AppCompatActivity implements View.OnClickListener, Sea
     Toolbar tb;
     RecyclerView rv,rv1;
     RecyclerView.LayoutManager lm,lm1;
-    public String url = "http://116.75.138.232:8084/Lab_Project/JsonServlet";
-    public String infoUrl = "http://116.75.138.232:8084/Lab_Project/InfoServlet";
-    public String prourl = "http://116.75.138.232:8084/Lab_Project/ProfileServlet";
+    public String url = "http://116.75.138.48:8084/Lab_Project/JsonServlet";
+    public String infoUrl = "http://116.75.138.48:8084/Lab_Project/InfoServlet";
+    public String prourl = "http://116.75.138.48:8084/Lab_Project/ProfileServlet";
     RecyclerAdapter adapter;
     RecyclerInfoAdapter adapter1;
     public static final String KEY_USERNAME="sname";
     public static final String KEY_Profile="usrnm";
     TextView tv1,tv2;
     List<ProfileKey> li = new ArrayList<>();
+    List<Contact> l = new ArrayList<>();
     String li2 = new String();
     String x[];
     String nm,sta,d,ad;
@@ -224,6 +225,7 @@ public class User extends AppCompatActivity implements View.OnClickListener, Sea
                 GsonBuilder builder = new GsonBuilder();
                 Gson gson = builder.create();
                 List<Contact> list = Arrays.asList(gson.fromJson(ad,Contact[].class));
+                l = list;
                 adapter = new RecyclerAdapter(nm,list,User.this);
                 rv.setAdapter(adapter);
 
@@ -312,22 +314,31 @@ public class User extends AppCompatActivity implements View.OnClickListener, Sea
     @Override
     public boolean onQueryTextSubmit(String query) {
 
-        if (ad.contains(query))
-        {
-            Intent inte = new Intent(this,Cart.class);
-            Bundle bun = new Bundle();
-            bun.putString("name",nm);
-            inte.putExtras(bun);
-            startActivity(inte);
-        }
         return true;
     }
+
+    /*Search View*/
 
     @Override
     public boolean onQueryTextChange(String newText) {
 
+        final List<Contact> filteredModelList = filter(l, newText);
+
+        adapter.setFilter(filteredModelList);
+
         Log.d("search text ", newText);
         return true;
+    }
+
+    private List<Contact> filter(List<Contact> models, String query) {
+        final List<Contact> filteredModelList = new ArrayList<>();
+        for (Contact model : models) {
+            final String text = model.getBook_nme();
+            if (text.contains(query)) {
+                filteredModelList.add(model);
+            }
+        }
+        return filteredModelList;
     }
 
     @Override

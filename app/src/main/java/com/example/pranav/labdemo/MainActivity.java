@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button b,b1;
     DataBase db;
 
-    public static final String LOGIN_URL = "http://116.75.138.232:8084/Lab_Project/DbConnection";
+    public static final String LOGIN_URL = "http://116.75.138.48:8084/Lab_Project/DbConnection";
     public static final String KEY_USERNAME="name";
     public static final String KEY_PASSWORD="pass";
     private String Username;

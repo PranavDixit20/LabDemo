@@ -42,8 +42,8 @@ public class Desp extends AppCompatActivity implements View.OnClickListener {
     Toolbar tb;
     TextView tv,tv1,tv2;
     String nam,un,stat,status;
-    public String url = "http://116.75.138.232:8084/Lab_Project/JsonServlet";
-    public String BuyUrl = "http://116.75.138.232:8084/Lab_Project/BorrowServlet";
+    public String url = "http://116.75.138.48:8084/Lab_Project/JsonServlet";
+    public String BuyUrl = "http://116.75.138.48:8084/Lab_Project/BorrowServlet";
     public static final String Key_Due = "ddate";
     public static final String Key_Renew = "rdate";
     public static final String Key_Assign = "adate";
@@ -170,7 +170,7 @@ public class Desp extends AppCompatActivity implements View.OnClickListener {
                 break;
             case R.id.action_drawer_cart:
                 Intent inn=new Intent(this,Cart.class);
-                inn.putExtra("name",nam);
+                inn.putExtra("name",un);
                 inn.putExtra("status",stat);
                 startActivities(new Intent[]{inn});
 

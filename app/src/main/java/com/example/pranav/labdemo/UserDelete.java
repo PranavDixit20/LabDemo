@@ -30,7 +30,7 @@ public class UserDelete extends AppCompatActivity implements View.OnClickListene
     Bundle bu;
     String s,nm;
     Toolbar tb;
-    public String url = "http://116.75.138.232:8084/Lab_Project/DeleteAccServlet";
+    public String url = "http://116.75.138.48:8084/Lab_Project/DeleteAccServlet";
     public static final String KEY_name="dname";
 
     @Override
