@@ -167,10 +167,19 @@ public class Desp extends AppCompatActivity implements View.OnClickListener {
                 startActivity(new Intent(this,Help.class));
                 break;
             case R.id.exit:
-                SharedPreferences sharedpreferences = getSharedPreferences(MainActivity.MyPREFERENCES, Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedpreferences.edit();
-                editor.clear();
-                editor.commit();
+                new AlertDialog.Builder(this).setTitle("LogOut")
+                        .setMessage("Are you sure?")
+                        .setPositiveButton("yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                                Intent intent = new Intent(Desp.this,MainActivity.class);
+                                intent.addCategory(Intent.CATEGORY_HOME);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                startActivity(intent);
+                                finish();
+                            }
+                        }).setNegativeButton("no", null).show();
                 break;
             case R.id.action_drawer_cart:
                 Intent inn=new Intent(this,Cart.class);
